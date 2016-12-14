@@ -1,0 +1,63 @@
+html {
+    height: 100%;
+}
+
+body{
+    font-size: calc(12px + 2.5vw);
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-width: 320px;
+}
+
+header{
+    height: 200px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.content-wrap{
+    display: flex;
+    align-items: stretch;
+    min-height: calc(100% - 200px);
+}
+
+.c-section{
+    max-width: 980px;
+}
+
+.aside{
+    width: 25%;
+    float: left;
+    background: yellowgreen;
+}
+
+.main{
+    width: 75%;
+}
+
+.wrapper {
+    flex: 1;
+}
+
+.footer{
+    height: 100px;
+    background: green;
+}
+
+.l-col{
+    background: red;
+    width: 25%;
+}
+
+.c-col{
+    max-width: 665px;
+    background: yellow;
+    width: 50%;
+}
+
+.r-col{
+    background: skyblue;
+    width: 25%;
+
+}
