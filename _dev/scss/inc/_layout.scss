@@ -1,63 +1,86 @@
+/**
+ * Created by Pompo on 14.12.2016.
+ */
+
 html {
-    height: 100%;
+  height: 100%;
 }
 
-body{
-    font-size: calc(12px + 2.5vw);
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    min-width: 320px;
+body {
+  font-size: calc(12px + 2.5vw);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  font-family: 'PT Sans', sans-serif;
+  color: #333333;
 }
 
-header{
-    height: 200px;
-    display: flex;
-    flex-wrap: nowrap;
+header {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-.content-wrap{
-    display: flex;
-    align-items: stretch;
-    min-height: calc(100% - 200px);
+.content-wrap {
+  display: flex;
+  align-items: stretch;
+  min-height: calc(100% - 200px);
 }
 
-.c-section{
-    max-width: 980px;
+.c-section {
+  max-width: 980px;
 }
 
-.aside{
-    width: 25%;
-    float: left;
-    background: yellowgreen;
+.aside {
+  width: 25%;
+  float: left;
 }
 
-.main{
-    width: 75%;
+.main {
+  width: 75%;
 }
 
 .wrapper {
-    flex: 1;
+  flex: 1;
 }
 
-.footer{
-    height: 100px;
-    background: green;
+.l-col {
+  text-align: center;
+  padding-top: 55px;
+  width: 25%;
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    background: url('../img/l-col_bg.png') no-repeat scroll 100% 0;
+    top: -13px;
+    width: 30px;
+    right: 0;
+    height: 224px;
+    z-index: 1;
+  }
 }
 
-.l-col{
-    background: red;
-    width: 25%;
+.r-col {
+  width: 25%;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    background: url('../img/r-col_bg.png') no-repeat scroll 0 0;
+    top: -13px;
+    width: 30px;
+    left: 0;
+    height: 224px;
+    z-index: 1;
+  }
 }
 
-.c-col{
-    max-width: 665px;
-    background: yellow;
-    width: 50%;
+
+.c-col {
+  max-width: 665px;
+  width: 50%;
 }
 
-.r-col{
-    background: skyblue;
-    width: 25%;
-
-}

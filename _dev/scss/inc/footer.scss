@@ -1,0 +1,25 @@
+/**
+ * Created by Pompo on 15.12.2016.
+ */
+
+.footer{
+  background: #f6f6f6;
+  border-top: 5px solid #cccccc;
+  height: 80px;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  font-size: .85rem;
+  padding: 2em 0;
+  text-align: center;
+
+  &:before{
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    height: 20px;
+    width: 100%;
+    background: url('../img/bg-footer.gif') repeat-x scroll transparent;
+  }
+}
