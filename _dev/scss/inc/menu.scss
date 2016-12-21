@@ -1,0 +1,101 @@
+/**
+ * Created by Pompo on 20.12.2016.
+ */
+.menu{
+  background-color: #fff;
+  border: 1px solid #d0d0d0;
+  z-index: 100;
+
+  & > li{
+    border-bottom: 1px solid #d0d0d0;
+
+
+    &:last-of-type{
+      border-bottom: none;
+    }
+
+    &.has-menu{
+      position: relative;
+
+      &:after{
+        position: absolute;
+        content: '';
+        width: 0;
+        height: 0;
+        border-top: 6px solid transparent;
+        border-left: 8px solid #333333;
+        border-bottom: 6px solid transparent;
+        right: 15px;
+        top: calc(50% - 6px);
+      }
+    }
+
+    &:hover{
+
+      & > .sub-menu{
+        transform: translate(0);
+        opacity: 1;
+      }
+    }
+
+    & > a {
+      display: block;
+      text-decoration: none;
+      color: #333;
+      font-size: 1.2rem;
+      padding: .5em .75em;
+      transition: all ease .25s;
+
+      &:hover{
+        background-color: #f0f0f0;
+        color: #1c743d;
+      }
+
+      &.is-active{
+        font-weight: 600;
+      }
+    }
+
+  }
+}
+
+.sub-menu{
+  transform: translate(-1000px);
+  opacity: 0;
+  transition: opacity ease-out .2s;
+  background-color: #fff;
+  border: 1px solid #d0d0d0;
+  position: absolute;
+  top:-1px;
+  width: 250px;
+  right: -252px;
+  z-index: 10;
+
+  & > li{
+    border-bottom: 1px solid #d0d0d0;
+
+    &:last-of-type{
+      border-bottom: none;
+    }
+
+    & > a{
+      font-size: 1rem;
+      padding: .5em .75em;
+      transition: all ease .25s;
+      display: block;
+      text-decoration: none;
+      color: #333;
+
+      &:hover{
+        background-color: #f0f0f0;
+        color: #1c743d;
+      }
+
+      &.is-active{
+        font-weight: 600;
+      }
+    }
+
+  }
+
+}

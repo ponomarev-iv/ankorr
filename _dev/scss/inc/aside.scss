@@ -1,0 +1,17 @@
+/**
+ * Created by Pompo on 19.12.2016.
+ */
+.aside{
+  background-color: #f1faf5;
+  position: relative;
+
+  &:after{
+    position: absolute;
+    content: '';
+    background: url('../img/shadow-aside.jpg') repeat-y scroll transparent;
+    top:0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+  }
+}

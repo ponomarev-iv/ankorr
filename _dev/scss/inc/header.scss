@@ -8,6 +8,10 @@
   position: relative;
   margin: 13px 0 11px;
 
+  @include respondTo(tablet){
+    height: auto;
+  }
+
   &:after{
     content: "";
     top: -13px;
@@ -37,17 +41,41 @@
 
 .phone{
   padding-left: 6rem;
-  background: url('../img/i-phone.svg') no-repeat scroll transparent 3.5rem 0 / 2rem 2rem;
+  background: url('../img/i-phone.svg') no-repeat scroll transparent 3.5rem 0 / 2rem 3rem;
   z-index: 10;
   margin-top: 2rem;
+  line-height: 0;
+
+  @include respondTo(desktop){
+    padding-left: 4rem;
+    background: url('../img/i-phone.svg') no-repeat scroll transparent 2rem 0 / 1.5rem 2rem;
+  }
+
+  @include respondTo(tablet){
+    margin: 0;
+  }
 
   & > a{
     text-decoration: none;
-    display: block;
+    display: inline-block;
     color: #333333;
     font-size: 1rem;
     padding-bottom: .5em;
     white-space: nowrap;
+    line-height: 1;
+    transition: color ease .3s;
+
+    @include respondTo(tablet){
+      font-size: .8rem;
+    }
+
+    @include respondTo(tablet){
+      font-size: 1rem;
+    }
+
+    &:hover{
+      color: #6a6a6a;
+    }
   }
 }
 
@@ -56,12 +84,36 @@
   background: url('../img/i-email.svg') no-repeat scroll transparent 3.65rem 0 / 1.8rem 1.8rem;
   z-index: 10;
   margin-top: 1rem;
+  line-height: 0;
+
+  @include respondTo(desktop){
+    padding-left: 4rem;
+    background: url('../img/i-email.svg') no-repeat scroll transparent 2rem 0 / 1.5rem 2rem;
+  }
+
+  @include respondTo(small){
+    padding-bottom: 1rem;
+  }
 
   & > a{
     text-decoration: underline;
-    display: block;
+    display: inline-block;
     color: #333333;
     font-size: 1rem;
     padding-bottom: .5em;
+    line-height: 1;
+    transition: color ease .3s;
+
+    @include respondTo(tablet){
+      font-size: .8rem;
+    }
+
+    @include respondTo(tablet){
+      font-size: 1rem;
+    }
+
+    &:hover{
+      color: #6a6a6a;
+    }
   }
 }

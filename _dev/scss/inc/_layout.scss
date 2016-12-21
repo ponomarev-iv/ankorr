@@ -19,25 +19,43 @@ body {
 header {
   display: flex;
   flex-wrap: nowrap;
+
+  @include respondTo(small){
+    display: block;
+  }
 }
+
 
 .content-wrap {
   display: flex;
   align-items: stretch;
-  min-height: calc(100% - 200px);
+  min-height: calc(100% - 220px);//высота шапки
+
+  @include respondTo(tablet){
+    min-height: calc(100% - 168px);//после изменений высоты шапки
+  }
 }
 
 .c-section {
   max-width: 980px;
+  box-sizing: border-box;
+  padding: 2rem 3%;
 }
 
 .aside {
   width: 25%;
   float: left;
+  box-sizing: border-box;
+  padding: 2rem 3%;
 }
 
 .main {
   width: 75%;
+  background: url('../img/bg-image.jpg') no-repeat scroll transparent 100% 100%;
+
+  @include respondTo(mobile){
+    background: none;
+  }
 }
 
 .wrapper {
@@ -49,6 +67,7 @@ header {
   padding-top: 55px;
   width: 25%;
   position: relative;
+  box-sizing: border-box;
 
   &:after {
     content: "";
@@ -59,6 +78,30 @@ header {
     right: 0;
     height: 224px;
     z-index: 1;
+  }
+
+  @include respondTo(desktop){
+    padding-left: 3%;
+    padding-right: 3%;
+
+    & > img{
+      max-width: 100%;
+    }
+  }
+
+  @include respondTo(tablet){
+    width: 50%;
+    padding-top: 2rem;
+
+    &:after{
+      display: none;
+    }
+  }
+
+  @include respondTo(small){
+    width: 100%;
+    padding: 1rem 0 0 2rem;
+    text-align: left;
   }
 }
 
@@ -76,11 +119,29 @@ header {
     height: 224px;
     z-index: 1;
   }
+
+  @include respondTo(tablet){
+    width: 50%;
+    margin: 1rem 0;
+
+    &:before{
+      display: none;
+    }
+  }
+
+  @include respondTo(small){
+    width: 100%;
+  }
 }
 
 
 .c-col {
   max-width: 665px;
   width: 50%;
+  overflow: hidden;
+
+  @include respondTo(tablet){
+    display: none;
+  }
 }
 
