@@ -19,6 +19,12 @@ h3{
   margin: 2.5em 0 1em;
 }
 
+h4{
+  font-size: 1.2rem;
+  margin: 2.5em 0 1em;
+  font-weight: 600;
+}
+
 p{
   margin-top: 1em;
   font-size: 1rem;
@@ -88,7 +94,7 @@ em{
         position: absolute;
         content: '';
         left: 0;
-        top: 6px;
+        top: 10px;
         border-radius: 50%;
         border: 2px solid #333333;
       }
