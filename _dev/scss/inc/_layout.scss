@@ -29,10 +29,10 @@ header {
 .content-wrap {
   display: flex;
   align-items: stretch;
-  min-height: calc(100% - 220px);//высота шапки
+  min-height: calc(100vh - 304px);//высота шапки и футера
 
   @include respondTo(tablet){
-    min-height: calc(100% - 168px);//после изменений высоты шапки
+    min-height: calc(100vh - 168px);//после изменений высоты шапки
   }
 }
 
