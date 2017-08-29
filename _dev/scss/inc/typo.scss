@@ -1,7 +1,6 @@
 /**
  * Created by Pompo on 20.12.2016.
  */
-
 h1{
   font-size: 2rem;
   text-align: center;
@@ -99,5 +98,23 @@ em{
         border: 2px solid #333333;
       }
     }
+  }
+}
+
+//header-title
+.page-title{
+  text-align: left;
+  font-weight: 700;
+  padding-bottom: .5em;
+  margin-bottom: 1em;
+  border-bottom: 1px solid #cccccc;
+}
+
+.content-title{
+  text-align: left;
+  font-weight: 700;
+
+  &_sm{
+    font-size: 1.5rem;
   }
 }
