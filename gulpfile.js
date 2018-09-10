@@ -12,9 +12,7 @@ var gulp = require('gulp'),
     csso = require('gulp-csso'),
     imagemin = require('gulp-imagemin'),
     spritesmith  = require('gulp.spritesmith'),
-    pngquant = require('imagemin-pngquant'),
     newer = require('gulp-newer'),
-    size = require('gulp-size'),
     browserSync = require("browser-sync"),
     reload = browserSync.reload;
 
