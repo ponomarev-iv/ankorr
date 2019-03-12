@@ -3,20 +3,15 @@
  */
 'use strict';
 
-var gulp = require('gulp'),
-    watch = require('gulp-watch'),
+const gulp = require('gulp'),
     prefixer = require('gulp-autoprefixer'),
     uglify = require('gulp-uglify'),
     sass = require('gulp-sass'),
     rigger = require('gulp-rigger'),
     csso = require('gulp-csso'),
-    imagemin = require('gulp-imagemin'),
-    spritesmith  = require('gulp.spritesmith'),
-    newer = require('gulp-newer'),
-    browserSync = require("browser-sync"),
-    reload = browserSync.reload;
+    browsersync = require("browser-sync").create();
 
-var path = {
+const path = {
     build: {
         css: 'public/css/',
         img: 'public/img/',
@@ -43,87 +38,51 @@ var path = {
     clean: 'public/'
 };
 
-var config = {
-    server: {
-        baseDir: "public/"
-    },
-    tunnel: false,
-    host: 'localhost',
-    port: 9000,
-    logPrefix: "Frontend"
-};
+// BrowserSync
+function browserSync(done) {
+    browsersync.init({
+        server: {
+            baseDir: "public/"
+        },
+        port: 9000
+    });
+    done();
+}
 
-gulp.task('webserver', function () {
-    browserSync(config);
-});
+// BrowserSync Reload
+function browserSyncReload(done) {
+    browsersync.reload();
+    done();
+}
 
-
-gulp.task('sprite:build', function () {
-    var spriteData =
-        gulp.src(path.src.sprite)
-            .pipe(spritesmith({
-                imgName: 'sprite.png',
-                cssName: 'sprite.scss',
-                cssFormat: 'scss',
-                imgPath: '../img/sprite.png',
-                padding: 3,
-                algorithm: 'binary-tree',
-                cssVarMap: function(sprite) {
-                    sprite.name = 'i-' + sprite.name
-                }
-            }));
-
-    spriteData.img.pipe(gulp.dest(path.build.img));
-    spriteData.css.pipe(gulp.dest('_dev/scss/inc/'));
-
-});
-
-gulp.task('sprite-retina', function () {
-    var spriteRetinaData =
-        gulp.src(path.src.spriteRetina)
-            .pipe(spritesmith({
-                imgName: 'sprite@2x.png',
-                retinaSrcFilter: '_dev/img/sprite@2x/*@2x.png',
-                retinaImgName: 'sprite@2x.png',
-                cssName: 'sprite.scss',
-                cssFormat: 'scss',
-                imgPath: '/public/img/sprite.png',
-                retinaImgPath: '/public/img/sprite@2x.png',
-                cssVarMap: function(sprite) {
-                    sprite.name = 'i-' + sprite.name
-                }
-            }));
-
-    spriteRetinaData.img.pipe(gulp.dest(path.build.img));
-    spriteRetinaData.css.pipe(gulp.dest(path.src.scss));
-});
-
-gulp.task('style:build', function () {
-    gulp.src(path.src.style)
+function style() {
+    return gulp
+        .src(path.src.style)
         .pipe(sass({
             errLogToConsole: true
         }))
         .on('error', console.log)
-        .pipe(prefixer('last 4 versions'))
+        .pipe(prefixer('last 3 versions'))
         .pipe(csso())
         .pipe(gulp.dest(path.build.css))
-        .pipe(reload({stream: true}));
-});
+        .pipe(browsersync.stream());
+}
 
-gulp.task('image:build', function () {
-    gulp.src(path.src.img)
-        .pipe(newer(path.build.img))
-        .pipe(imagemin())
-        .on('error', console.log)
-        .pipe(gulp.dest(path.build.img));
-});
-
-gulp.task('js:build', function () {
-    gulp.src(path.src.js)
+function js() {
+    return gulp
+        .src(path.src.js)
         .pipe(uglify())
         .pipe(gulp.dest(path.build.js))
-        .pipe(reload({stream: true}));
-});
+        .pipe(browsersync.stream());
+}
+
+
+function html() {
+    return gulp
+        .src(path.src.html)
+        .pipe(rigger())
+        .pipe(gulp.dest(path.build.html));
+}
 
 gulp.task('html:build', function () {
     gulp.src(path.src.html)
@@ -131,29 +90,18 @@ gulp.task('html:build', function () {
         .pipe(gulp.dest(path.build.html));
 });
 
-gulp.task('build', [
-    'html:build',
-    'style:build',
-    'image:build',
-    'js:build'
-]);
+function watchFiles() {
+    gulp.watch([path.watch.style], style);
+    gulp.watch([path.watch.js], js);
+    gulp.watch([path.src.html], gulp.series(html, browserSyncReload));
+}
 
-gulp.task('watch', function(){
-    watch([path.watch.html], function(event, cb) {
-        gulp.start('html:build');
-    });
-    watch([path.watch.style], function(event, cb) {
-        gulp.start('style:build');
-    });
-    watch([path.watch.sprite], function(event, cb) {
-        gulp.start('sprite:build');
-    });
-    watch([path.watch.img], function(event, cb) {
-        gulp.start('image:build');
-    });
-    watch([path.watch.js], function(event, cb) {
-        gulp.start('js:build');
-    });
-});
+// Tasks
+gulp.task("css", style);
+gulp.task("js", js);
+gulp.task("html", html);
 
-gulp.task('default', ['build', 'webserver', 'watch']);
+gulp.task('build', gulp.parallel(style, js, html));
+
+// watch
+gulp.task("watch", gulp.parallel(watchFiles, browserSync));
