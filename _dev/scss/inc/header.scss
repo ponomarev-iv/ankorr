@@ -41,10 +41,13 @@
 
 .phone{
   padding-left: 6rem;
-  background: url('../img/i-phone.svg') no-repeat scroll transparent 3.5rem 0 / 2rem 3rem;
+  background: url('../img/i-phone.svg') no-repeat scroll transparent 3.5rem 0 / 2rem 2rem;
   z-index: 10;
   margin-top: 2rem;
-  line-height: 0;
+  line-height: 2rem;
+  display: flex;
+  align-items: center;
+  height: 2rem;
 
   @include respondTo(desktop){
     padding-left: 4rem;
@@ -60,7 +63,6 @@
     display: inline-block;
     color: #333333;
     font-size: 1rem;
-    padding-bottom: .5em;
     white-space: nowrap;
     line-height: 1;
     transition: color ease .3s;
@@ -85,6 +87,9 @@
   z-index: 10;
   margin-top: 1rem;
   line-height: 0;
+  height: 2rem;
+  display: flex;
+  align-items: center;
 
   @include respondTo(desktop){
     padding-left: 4rem;
@@ -116,4 +121,9 @@
       color: #6a6a6a;
     }
   }
+}
+
+.phone-link{
+  text-decoration: none;
+  color: #333333;
 }
