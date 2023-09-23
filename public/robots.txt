@@ -1,4 +1,0 @@
-Host: http://www.ankorr.ru/
-
-User-agent: *
-Disallow: /css/
